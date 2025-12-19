@@ -1,0 +1,146 @@
+.homeContent {
+    padding: 2rem;
+    /* max-width controlled by layout wrapper now */
+}
+
+.leagueBlock {
+    margin-bottom: 2rem;
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.leagueHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.8rem 1rem;
+    background: #fdfdfd;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leagueHeader img {
+    width: 24px;
+    height: 24px;
+}
+
+.leagueHeader h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-black);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.matchList {
+    display: flex;
+    flex-direction: column;
+}
+
+.matchCard {
+    display: grid;
+    grid-template-columns: 60px 50px 1fr 50px;
+    /* Time | Status | Teams | Score */
+    align-items: center;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    transition: background 0.2s;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.matchCard:last-child {
+    border-bottom: none;
+}
+
+.matchCard:hover {
+    background: var(--bg-offset);
+}
+
+/* Time Column */
+.timeStatus {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 0.8rem;
+    color: var(--text-grey);
+}
+
+/* Status Column */
+.statusCol {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-black);
+    text-align: center;
+}
+
+.statusCol.live {
+    color: #e74c3c;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Teams Column */
+.teams {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0 1rem;
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.teamName {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 500;
+}
+
+.teamName img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* Score Column */
+.scoreCol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-end;
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .matchCard {
+        grid-template-columns: 50px 1fr 30px;
+        /* Simplified for mobile */
+        padding: 1rem;
+    }
+
+    .statusCol {
+        display: none;
+        /* Hide status text, maybe merge with time */
+    }
+}

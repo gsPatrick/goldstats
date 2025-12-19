@@ -1,0 +1,390 @@
+/* ========== LEAGUE PAGE STYLES ========== */
+
+.noData {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+    text-align: center;
+    color: #666;
+}
+
+/* ========== LEAGUE HEADER ========== */
+.leagueHeader {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.separator {
+    color: #ccc;
+}
+
+.countryFlag {
+    width: 16px;
+    height: 12px;
+    object-fit: cover;
+}
+
+.leagueInfo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.leagueLogo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.leagueDetails h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.seasonName {
+    font-size: 0.85rem;
+    color: #666;
+}
+
+/* ========== TABS ========== */
+.leagueTabsWrapper {
+    background: white;
+    min-height: 500px;
+}
+
+.tabBar {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+    overflow-x: auto;
+}
+
+.tabBtn {
+    padding: 1rem 1.5rem;
+    border: none;
+    background: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+}
+
+.tabBtn:hover {
+    color: #333;
+}
+
+.tabBtn.active {
+    color: #c00;
+    border-bottom-color: #c00;
+}
+
+.tabContent {
+    padding: 1rem;
+}
+
+/* ========== SECTION HEADER ========== */
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.sectionHeader img {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+}
+
+.link {
+    margin-left: auto;
+    color: #0066cc;
+    text-decoration: none;
+    font-size: 0.8rem;
+}
+
+/* ========== ROUND SELECTOR ========== */
+.roundSelector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.roundArrow {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #666;
+}
+
+.roundArrow:hover {
+    background: #f0f0f0;
+}
+
+.roundSelect {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    min-width: 150px;
+}
+
+.roundHeader {
+    background: #e8e8e8;
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+/* ========== FIXTURES ========== */
+.fixturesList {
+    display: flex;
+    flex-direction: column;
+}
+
+.fixtureRow {
+    display: grid;
+    grid-template-columns: 80px 1fr 50px;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.fixtureRow:hover {
+    background: #fafafa;
+}
+
+.futureMatch {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.fixtureDate {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.fixtureTeams {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.fixtureTeam {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.teamLogo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.fixtureTeam span {
+    font-size: 0.85rem;
+}
+
+.winner {
+    font-weight: 700;
+}
+
+.fixtureScore {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.winnerScore {
+    font-weight: 700;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+/* ========== STANDINGS TABLE ========== */
+.standingsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.standingsTable th {
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    background: #f5f5f5;
+    font-weight: 600;
+    color: #666;
+    font-size: 0.75rem;
+}
+
+.standingsTable th:nth-child(2) {
+    text-align: left;
+}
+
+.standingsTable td {
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.positionCell {
+    position: relative;
+    padding-left: 8px !important;
+}
+
+.zoneChampions .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #28a745;
+}
+
+.zoneEuropa .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #007bff;
+}
+
+.zoneRelegation .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #dc3545;
+}
+
+.positionNumber {
+    font-weight: 600;
+}
+
+.teamCell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.teamLogoSmall {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.pointsCell {
+    font-weight: 700;
+}
+
+.formCell {
+    display: flex;
+    gap: 0.2rem;
+    justify-content: center;
+}
+
+.formDot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: white;
+}
+
+.formDot.win {
+    background: #28a745;
+}
+
+.formDot.loss {
+    background: #dc3545;
+}
+
+.formDot.draw {
+    background: #ffc107;
+    color: #333;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+    .leagueLogo {
+        width: 40px;
+        height: 40px;
+    }
+
+    .leagueDetails h1 {
+        font-size: 1.1rem;
+    }
+
+    .tabBtn {
+        padding: 0.75rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .fixtureRow {
+        grid-template-columns: 60px 1fr 40px;
+        padding: 0.5rem;
+    }
+
+    .standingsTable {
+        font-size: 0.75rem;
+    }
+
+    .standingsTable th,
+    .standingsTable td {
+        padding: 0.4rem 0.2rem;
+    }
+
+    .formDot {
+        width: 14px;
+        height: 14px;
+        font-size: 0.55rem;
+    }
+}

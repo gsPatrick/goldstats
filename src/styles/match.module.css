@@ -1,0 +1,290 @@
+/* Match Page Styles - GoldStats Luxury Theme */
+
+.matchContainer {
+    padding-bottom: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.errorContainer {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+    padding: 1rem 2rem;
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Header Section */
+.headerSection {
+    background: white;
+    padding: 2rem 1rem;
+    border-bottom: 2px solid #D4AF37;
+}
+
+.headerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.teamBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+    text-align: center;
+}
+
+.teamBlock img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.teamBlock h2 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1A1A1A;
+}
+
+.centerBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.floatingDate {
+    background: white;
+    padding: 0.4rem 1rem;
+    border: 1px solid #D4AF37;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1A1A1A;
+}
+
+.scoreBlock {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bigScore {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1A1A1A;
+}
+
+.verticalLine {
+    width: 2px;
+    height: 40px;
+    background: #D4AF37;
+}
+
+.matchStatus {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+}
+
+/* AI Section */
+.aiSection {
+    padding: 1.5rem;
+}
+
+.analysisBox {
+    background: linear-gradient(135deg, #FFFEF5 0%, #FFF 100%);
+    border: 1px solid #D4AF37;
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.analysisTitle {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #D4AF37;
+    margin-bottom: 1rem;
+}
+
+.analysisBox p {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Tabs Container */
+.tabsContainer {
+    padding: 0 1.5rem;
+}
+
+.tabHeaders {
+    display: flex;
+    gap: 0.5rem;
+    border-bottom: 1px solid #E5E5E5;
+    padding-bottom: 0;
+}
+
+.tabButton {
+    padding: 0.8rem 1.2rem;
+    border: none;
+    background: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.tabButton:hover {
+    color: #D4AF37;
+}
+
+.tabButton.active {
+    color: #D4AF37;
+    border-bottom-color: #D4AF37;
+}
+
+.tabContent {
+    padding: 1.5rem 0;
+}
+
+/* Matches List */
+.matchesList h4 {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #1A1A1A;
+    margin-bottom: 1rem;
+    border-left: 3px solid #D4AF37;
+    padding-left: 0.8rem;
+}
+
+.teamSection {
+    margin-bottom: 2rem;
+}
+
+.miniCard {
+    background: white;
+    padding: 0.8rem 1rem;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: border-color 0.2s;
+}
+
+.miniCard:hover {
+    border-color: #D4AF37;
+}
+
+.date {
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 70px;
+}
+
+.matchInfo {
+    flex: 1;
+    font-weight: 500;
+}
+
+.league {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.noData {
+    text-align: center;
+    color: #999;
+    padding: 2rem;
+}
+
+/* Standings Table */
+.standingsTable {
+    overflow-x: auto;
+}
+
+.standingsTable table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.standingsTable th {
+    background: #F9FAFB;
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+    font-weight: 700;
+    color: #666;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.standingsTable th:nth-child(2) {
+    text-align: left;
+}
+
+.standingsTable td {
+    padding: 0.8rem 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.standingsTable tr.highlighted {
+    background: #FFFEF5;
+}
+
+.teamCell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.teamCell img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .headerContent {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .teamBlock {
+        flex-direction: row;
+        gap: 1rem;
+    }
+
+    .teamBlock img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .bigScore {
+        font-size: 2rem;
+    }
+
+    .tabButton {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+    }
+}

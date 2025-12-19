@@ -1,0 +1,40 @@
+.layoutContainer {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contentWrapper {
+    display: flex;
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mainContent {
+    flex: 1;
+    min-width: 0;
+    /* Prevents overflow issues */
+}
+
+.mainHeader {
+    height: 80px;
+    border-bottom: 2px solid var(--gold-primary);
+    display: flex;
+    align-items: center;
+    padding: 0 2rem;
+    background: white;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-black);
+}
+
+.logo span {
+    color: var(--gold-primary);
+}

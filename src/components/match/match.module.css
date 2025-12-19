@@ -1,0 +1,1219 @@
+/* Flashscore Clone - Match Components CSS */
+
+/* ========== PAGE LAYOUT ========== */
+.matchPageLayout {
+    display: flex;
+    min-height: 100vh;
+    background: #f0f0f0;
+}
+
+.matchContent {
+    flex: 1;
+    margin-right: 380px;
+    /* Space for chat sidebar */
+    transition: margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: calc(100% - 380px);
+}
+
+@media (max-width: 1024px) {
+    .matchContent {
+        margin-right: 320px;
+        max-width: calc(100% - 320px);
+    }
+}
+
+@media (max-width: 768px) {
+    .matchContent {
+        margin-right: 0;
+        max-width: 100%;
+        padding-bottom: 80px;
+        /* Space for collapsed chat toggle */
+    }
+}
+
+/* ========== GENERAL ========== */
+.noData {
+    text-align: center;
+    padding: 3rem;
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* ========== BREADCRUMB ========== */
+.breadcrumb {
+    background: #f5f5f5;
+    padding: 0.8rem 1rem;
+    font-size: 0.8rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.separator {
+    color: #ccc;
+}
+
+.leagueName {
+    font-weight: 600;
+    color: #333;
+}
+
+/* ========== MATCH HEADER ========== */
+.matchHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: white;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.teamSide {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.teamLogo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+}
+
+.teamName {
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+.matchCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 2rem;
+    min-width: 150px;
+}
+
+.matchDateTime {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.scoreContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.score {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.scoreSeparator {
+    font-size: 2rem;
+    color: #ccc;
+}
+
+.matchStatus {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #666;
+    text-transform: uppercase;
+    margin-top: 0.25rem;
+}
+
+/* ========== MAIN TABS ========== */
+.tabsWrapper {
+    background: white;
+}
+
+.mainTabsBar {
+    display: flex;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0 1rem;
+}
+
+.mainTabBtn {
+    padding: 1rem 1.5rem;
+    border: none;
+    background: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+}
+
+.mainTabBtn:hover {
+    color: #c00;
+}
+
+.mainTabBtn.active {
+    color: #c00;
+    border-bottom-color: #c00;
+}
+
+.subTabsBar {
+    display: flex;
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+    background: #f9f9f9;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.subTabBtn {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.subTabBtn:hover {
+    border-color: #c00;
+}
+
+.subTabBtn.active {
+    background: #c00;
+    color: white;
+    border-color: #c00;
+}
+
+.tabContentArea {
+    padding: 1rem;
+}
+
+/* ========== EVENT TIMELINE ========== */
+.eventTimeline {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.periodHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: #f5f5f5;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+.periodScore {
+    color: #666;
+}
+
+.eventsList {
+    margin-bottom: 1rem;
+}
+
+.eventRow {
+    display: grid;
+    grid-template-columns: 1fr 30px 40px 30px 1fr;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+}
+
+.eventHomeContent {
+    text-align: right;
+    padding-right: 0.5rem;
+}
+
+.eventAwayContent {
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+.eventIcon {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.eventMinute {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.playerName {
+    font-weight: 500;
+}
+
+.relatedPlayer {
+    font-size: 0.75rem;
+    color: #999;
+    display: block;
+}
+
+/* ========== STATS COMPARISON ========== */
+.statsComparison {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.periodTabs {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.periodTab {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+.periodTab.active {
+    background: #333;
+    color: white;
+}
+
+.statsHeader {
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    padding: 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 1rem;
+}
+
+.statsList {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.statRow {
+    display: grid;
+    grid-template-columns: 60px 1fr 60px;
+    align-items: center;
+    gap: 1rem;
+}
+
+.statValue {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.statValue:last-child {
+    text-align: right;
+}
+
+.statWinner {
+    color: #c00;
+}
+
+.statBarContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.statLabel {
+    text-align: center;
+    font-size: 0.75rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.infoIcon {
+    font-size: 0.65rem;
+    color: #999;
+    cursor: help;
+}
+
+.statBars {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.statBarHome {
+    background: #f0f0f0;
+    height: 100%;
+    transition: width 0.3s;
+}
+
+.statBarAway {
+    background: #f0f0f0;
+    height: 100%;
+    transition: width 0.3s;
+}
+
+.statBarWinner.statBarHome {
+    background: linear-gradient(90deg, #c00 0%, #ff6b6b 100%);
+}
+
+.statBarWinner.statBarAway {
+    background: linear-gradient(90deg, #1a365d 0%, #4a6fa5 100%);
+}
+
+/* ========== FORMATIONS ========== */
+.formationsContainer {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.formationHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #f5f5f5;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px 8px 0 0;
+}
+
+.formationSide {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.formationTitle {
+    color: #666;
+}
+
+.formationLabel {
+    color: #333;
+    font-weight: 700;
+}
+
+.avgRating {
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.ratingHigh {
+    background: #28a745;
+    color: white;
+}
+
+.ratingMid {
+    background: #ffc107;
+    color: #333;
+}
+
+.ratingLow {
+    background: #dc3545;
+    color: white;
+}
+
+.fieldContainer {
+    display: grid;
+    grid-template-columns: 1fr 2px 1fr;
+    background: linear-gradient(180deg, #2d7a2d 0%, #3ca03c 50%, #2d7a2d 100%);
+    border-radius: 0 0 8px 8px;
+    min-height: 450px;
+    overflow: hidden;
+}
+
+.fieldHalfVertical {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    justify-content: space-around;
+}
+
+.fieldCenterLine {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.formationLine {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.formationPlayer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    min-width: 60px;
+}
+
+.playerPhotoWrapper {
+    position: relative;
+}
+
+.playerPhoto {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
+
+.playerPhotoPlaceholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: white;
+}
+
+.homeColors {
+    background: #d9a02d;
+}
+
+.awayColors {
+    background: #c00;
+}
+
+.playerRatingBadge {
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    padding: 0.15rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: white;
+    background: #666;
+}
+
+.playerNameFormation {
+    font-size: 0.65rem;
+    color: white;
+    text-align: center;
+    max-width: 65px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.soccerField {
+    background: linear-gradient(180deg, #2d8a2d 0%, #3ca03c 50%, #2d8a2d 100%);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.fieldHalf {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    gap: 0.5rem;
+}
+
+.fieldCenter {
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    margin: 1rem 0;
+}
+
+.playerMarker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    width: 60px;
+}
+
+.playerBadge {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+}
+
+.homeBadge {
+    background: #d9534f;
+}
+
+.awayBadge {
+    background: #1a365d;
+}
+
+.rating {
+    font-size: 0.65rem;
+}
+
+.playerNumber {
+    font-size: 0.65rem;
+    color: white;
+}
+
+.playerNameField {
+    font-size: 0.6rem;
+    color: white;
+    text-align: center;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.substitutesSection {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.substitutesSection h4 {
+    font-size: 0.75rem;
+    color: #666;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.substitutesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.teamSubs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.subPlayer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: white;
+    border-radius: 4px;
+    font-size: 0.8rem;
+}
+
+.subPhotoWrapper {
+    flex-shrink: 0;
+}
+
+.subPhoto {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.subPhotoPlaceholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+}
+
+.subInfo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.subDetails {
+    font-size: 0.7rem;
+    color: #666;
+}
+
+.subName {
+    font-weight: 500;
+}
+
+.subRating {
+    background: #e0e0e0;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+
+/* ========== H2H SECTION ========== */
+.h2hContainer {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.h2hTabBar {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.h2hTab {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+.h2hTab.active {
+    background: #c00;
+    color: white;
+}
+
+.h2hTeamSection {
+    margin-bottom: 2rem;
+}
+
+.h2hTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    padding: 0.75rem;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 8px 8px 0 0;
+}
+
+.h2hTeamLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.h2hMatchList {
+    display: flex;
+    flex-direction: column;
+}
+
+.h2hMatchRow {
+    display: grid;
+    grid-template-columns: 70px 40px 1fr 1fr 30px;
+    align-items: center;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+    background: white;
+}
+
+.h2hMatchRow:hover {
+    background: #fafafa;
+}
+
+.h2hDate {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+.miniCard {
+    background: white;
+    padding: 0.8rem 1rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: border-color 0.2s;
+}
+
+.miniCard:hover {
+    border-color: #c00;
+}
+
+.miniCardLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.date {
+    font-size: 0.75rem;
+    color: #666;
+    min-width: 70px;
+}
+
+.matchInfo {
+    flex: 1;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.league {
+    font-size: 0.7rem;
+    color: #999;
+    background: #f0f0f0;
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+}
+
+.h2hLeague {
+    background: #f0f0f0;
+    padding: 0.1rem 0.3rem;
+    border-radius: 3px;
+    font-size: 0.65rem;
+    font-weight: 600;
+}
+
+.h2hTeamRow {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0 0.5rem;
+}
+
+.h2hMatchLogo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.h2hScore {
+    font-weight: 600;
+}
+
+.bold {
+    font-weight: 600;
+}
+
+.resultBadge {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: white;
+}
+
+.win {
+    background: #28a745;
+}
+
+.draw {
+    background: #ffc107;
+    color: #333;
+}
+
+.loss {
+    background: #dc3545;
+}
+
+/* ========== STANDINGS TABLE ========== */
+.standingsWrapper {
+    overflow-x: auto;
+}
+
+.standingsTabBar {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    overflow-x: auto;
+}
+
+.standingsTab {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.standingsTab.active {
+    background: #c00;
+    color: white;
+}
+
+.standingsFilter {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.filterBtn {
+    padding: 0.4rem 0.8rem;
+    border: 1px solid #ddd;
+    background: white;
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filterBtn.active {
+    background: #333;
+    color: white;
+    border-color: #333;
+}
+
+.standingsTableWrapper {
+    overflow-x: auto;
+}
+
+.standingsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.standingsTable th {
+    background: #f5f5f5;
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 0.7rem;
+}
+
+.standingsTable th:nth-child(2) {
+    text-align: left;
+}
+
+.standingsTable td {
+    padding: 0.6rem 0.4rem;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.positionCell {
+    position: relative;
+    padding-left: 8px !important;
+}
+
+.zoneChampions .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #28a745;
+}
+
+.zoneEuropa .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #007bff;
+}
+
+.zoneRelegation .positionCell::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: #dc3545;
+}
+
+.positionNumber {
+    font-weight: 600;
+}
+
+.teamCell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: left;
+}
+
+.teamLogoSmall {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.highlightedRow {
+    background: #fffef0;
+}
+
+.formCell {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+}
+
+.formBadge {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: white;
+}
+
+.formWin {
+    background: #28a745;
+}
+
+.formDraw {
+    background: #ffc107;
+    color: #333;
+}
+
+.formLoss {
+    background: #dc3545;
+}
+
+/* ========== FUTURE MATCHES LIST ========== */
+.futureMatchesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.teamSection h4 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    padding: 0.5rem;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+}
+
+/* ========== AI ANALYSIS BOX ========== */
+.aiAnalysisBox {
+    background: linear-gradient(135deg, #fffef5 0%, #fff 100%);
+    border: 1px solid #d4af37;
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.aiAnalysisBox h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #d4af37;
+    margin-bottom: 1rem;
+}
+
+.aiAnalysisBox p {
+    line-height: 1.7;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* ========== FILTER BAR ========== */
+.filterBar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.filterToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+}
+
+.filterToggle input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #c00;
+}
+
+.filterBadge {
+    font-size: 0.65rem;
+    background: #e0e0e0;
+    padding: 0.1rem 0.4rem;
+    border-radius: 4px;
+    margin-left: 0.5rem;
+    color: #666;
+}
+
+.sectionLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    margin-right: 0.5rem;
+}
+
+.scoreInline {
+    margin: 0 0.5rem;
+    color: #333;
+}
+
+.positive {
+    color: #28a745;
+}
+
+.negative {
+    color: #dc3545;
+}
+
+/* ========== EMPTY MATCH STATE ========== */
+.emptyMatchState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, #f9f9f9 0%, #f0f0f0 100%);
+    border-radius: 12px;
+}
+
+.emptyIcon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.emptyMatchState h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.emptyMatchState p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* ========== FUTURE FORMATIONS ========== */
+.futureFormations {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.futureFormationsHeader {
+    background: linear-gradient(135deg, #c00 0%, #ff4444 100%);
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+.futureFormationsHeader h3 {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.futureNote {
+    font-size: 0.75rem;
+    opacity: 0.9;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 600px) {
+    .matchHeader {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .teamSide {
+        flex-direction: row;
+    }
+
+    .teamLogo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .score {
+        font-size: 2rem;
+    }
+
+    .mainTabBtn {
+        padding: 0.8rem 1rem;
+        font-size: 0.75rem;
+    }
+
+    .subTabBtn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.7rem;
+    }
+
+    .eventRow {
+        grid-template-columns: 1fr 25px 35px 25px 1fr;
+        font-size: 0.75rem;
+    }
+
+    .h2hMatchRow {
+        grid-template-columns: 60px 35px 1fr 1fr 25px;
+        font-size: 0.75rem;
+    }
+
+    .subTabsBar {
+        overflow-x: auto;
+        padding: 0.5rem;
+    }
+
+    .futureMatchesList {
+        grid-template-columns: 1fr;
+    }
+}
