@@ -5,46 +5,28 @@ import styles from './ChatSidebar.module.css';
 
 const API_BASE = 'https://10stats-api-10stats.ebl0ff.easypanel.host/api';
 
-export default function ChatSidebar({ matchId, matchData }) {
-    // Get initial analysis from matchData if available
-    const existingAnalysis = matchData?.ai?.analysis || null;
-
-    const getInitialMessage = () => {
-        const homeName = matchData?.header?.home_team?.name || 'Time Casa';
-        const awayName = matchData?.header?.away_team?.name || 'Time Fora';
-
-        if (existingAnalysis && existingAnalysis !== 'Análise não disponível.') {
-            return `🤖 **Análise IA - ${homeName} vs ${awayName}**
-
-${existingAnalysis}
-
----
-💬 Posso ajudar com mais detalhes! Pergunte sobre:
-• Probabilidades de gols (Over/Under)
-• Escanteios
-• Ambas marcam (BTTS)
-• Handicap
-• Qualquer outra dúvida`;
-        }
-
-        return `Olá! 👋 Sou seu assistente de análise para ${homeName} vs ${awayName}.
-
-Posso ajudar com:
-• Análise de estatísticas
-• Comparação histórica
-• Probabilidades de apostas
-• Sugestões de mercados
-
-O que você gostaria de saber?`;
-    };
-
-    const [messages, setMessages] = useState([
-        { role: 'assistant', content: getInitialMessage() }
-    ]);
+export default function ChatSidebar({ matchId, matchData, isCollapsed: externalIsCollapsed, onToggleCollapse }) {
+    const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
-    const [isCollapsed, setIsCollapsed] = useState(false);
+    // Use external state if provided, otherwise use internal state
+    const [internalIsCollapsed, setInternalIsCollapsed] = useState(false);
+    const isCollapsed = externalIsCollapsed !== undefined ? externalIsCollapsed : internalIsCollapsed;
+    const [initialLoaded, setInitialLoaded] = useState(false);
     const messagesEndRef = useRef(null);
+
+    const handleToggleCollapse = () => {
+        if (onToggleCollapse) {
+            onToggleCollapse();
+        } else {
+            setInternalIsCollapsed(!internalIsCollapsed);
+        }
+    };
+
+    const homeName = matchData?.header?.home_team?.name || 'Time Casa';
+    const awayName = matchData?.header?.away_team?.name || 'Time Fora';
+    const league = matchData?.header?.league?.name || 'Liga';
+    const matchDate = matchData?.header?.date || 'Em breve';
 
     const scrollToBottom = () => {
         messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -53,6 +35,72 @@ O que você gostaria de saber?`;
     useEffect(() => {
         scrollToBottom();
     }, [messages]);
+
+    // Auto-load analysis from web on mount
+    useEffect(() => {
+        if (!initialLoaded && !isCollapsed) {
+            loadInitialAnalysis();
+        }
+    }, [isCollapsed]);
+
+    const loadInitialAnalysis = async () => {
+        setInitialLoaded(true);
+        setLoading(true);
+
+        // Show loading message
+        setMessages([{
+            role: 'assistant',
+            content: `🔍 Buscando informações atualizadas sobre **${homeName} vs ${awayName}**...`
+        }]);
+
+        try {
+            const matchInfo = {
+                home_team: homeName,
+                away_team: awayName,
+                league: league,
+                date: matchDate
+            };
+
+            const response = await fetch(`${API_BASE}/chat/match/${matchId}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    message: `Faça uma análise completa da partida ${homeName} vs ${awayName} pela ${league}. Busque na internet informações sobre:
+1. Últimos resultados e forma de cada time
+2. Confronto direto (H2H)
+3. Lesões e desfalques importantes
+4. Probabilidades e odds
+5. Sugestões de apostas (Over/Under, BTTS, vencedor)
+
+Seja objetivo e forneça dados atualizados.`,
+                    history: [],
+                    matchInfo
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setMessages([{
+                    role: 'assistant',
+                    content: `🤖 **Análise IA - ${homeName} vs ${awayName}**\n\n${data.data.message}\n\n---\n💬 Pergunte qualquer coisa sobre a partida!`
+                }]);
+            } else {
+                setMessages([{
+                    role: 'assistant',
+                    content: `Olá! 👋 Sou seu assistente para **${homeName} vs ${awayName}**.\n\nPosso buscar informações na internet sobre:\n• Estatísticas e forma recente\n• Lesões e desfalques\n• Odds e probabilidades\n• Sugestões de apostas\n\nO que você gostaria de saber?`
+                }]);
+            }
+        } catch (error) {
+            console.error('Initial analysis error:', error);
+            setMessages([{
+                role: 'assistant',
+                content: `Olá! 👋 Sou seu assistente para **${homeName} vs ${awayName}**.\n\nPergunte qualquer coisa sobre a partida e buscarei informações atualizadas na internet!`
+            }]);
+        }
+
+        setLoading(false);
+    };
 
     const sendMessage = async () => {
         if (!input.trim() || loading) return;
@@ -65,12 +113,11 @@ O que você gostaria de saber?`;
         setLoading(true);
 
         try {
-            // Pass match info for web search context
             const matchInfo = {
-                home_team: matchData?.header?.home_team?.name || 'Time Casa',
-                away_team: matchData?.header?.away_team?.name || 'Time Fora',
-                league: matchData?.header?.league?.name || 'Liga',
-                date: matchData?.header?.date || 'Em breve'
+                home_team: homeName,
+                away_team: awayName,
+                league: league,
+                date: matchDate
             };
 
             const response = await fetch(`${API_BASE}/chat/match/${matchId}`, {
@@ -78,7 +125,7 @@ O que você gostaria de saber?`;
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     message: userMessage,
-                    history: messages.slice(-10), // Last 10 messages for context
+                    history: messages.slice(-10),
                     matchInfo
                 })
             });
@@ -116,10 +163,10 @@ O que você gostaria de saber?`;
 
     // Quick suggestion buttons
     const suggestions = [
-        'Me dê uma análise completa',
-        'Over 2.5?',
+        'Over 2.5 gols?',
         'Escanteios',
         'BTTS?',
+        'Handicap',
         'Quem vai ganhar?'
     ];
 
@@ -129,7 +176,7 @@ O que você gostaria de saber?`;
             // Bold text
             line = line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             // Bullet points
-            if (line.startsWith('•') || line.startsWith('-')) {
+            if (line.startsWith('•') || line.startsWith('-') || line.match(/^\d+\./)) {
                 return <p key={i} className={styles.bulletPoint} dangerouslySetInnerHTML={{ __html: line }} />;
             }
             return <p key={i} dangerouslySetInnerHTML={{ __html: line }} />;
@@ -138,11 +185,11 @@ O que você gostaria de saber?`;
 
     return (
         <div className={`${styles.chatSidebar} ${isCollapsed ? styles.collapsed : ''}`}>
-            <div className={styles.chatHeader} onClick={() => setIsCollapsed(!isCollapsed)}>
+            <div className={styles.chatHeader} onClick={handleToggleCollapse}>
                 <div className={styles.headerContent}>
                     <span className={styles.chatIcon}>🤖</span>
                     <span className={styles.headerTitle}>Assistente IA</span>
-                    {existingAnalysis && <span className={styles.badge}>Análise</span>}
+                    <span className={styles.badge}>Web Search</span>
                 </div>
                 <button className={styles.collapseBtn}>
                     {isCollapsed ? '◀' : '▶'}
@@ -174,7 +221,7 @@ O que você gostaria de saber?`;
                         <div ref={messagesEndRef} />
                     </div>
 
-                    {messages.length <= 2 && (
+                    {messages.length <= 2 && !loading && (
                         <div className={styles.suggestions}>
                             {suggestions.map((s, idx) => (
                                 <button

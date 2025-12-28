@@ -2,32 +2,32 @@
 
 /* ========== PAGE LAYOUT ========== */
 .matchPageLayout {
-    display: flex;
+    display: block;
     min-height: 100vh;
     background: #f0f0f0;
+    position: relative;
 }
 
 .matchContent {
-    flex: 1;
+    /* Content goes to the left, sidebar is fixed on right */
     margin-right: 380px;
-    /* Space for chat sidebar */
-    transition: margin-right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    max-width: calc(100% - 380px);
+    /* Same as sidebar width */
+    min-height: 100vh;
+    transition: margin-right 0.3s ease;
 }
 
 @media (max-width: 1024px) {
     .matchContent {
         margin-right: 320px;
-        max-width: calc(100% - 320px);
+        /* Tablet sidebar width */
     }
 }
 
 @media (max-width: 768px) {
     .matchContent {
-        margin-right: 0;
-        max-width: 100%;
-        padding-bottom: 80px;
-        /* Space for collapsed chat toggle */
+        margin-right: 0 !important;
+        padding-bottom: 70px;
+        /* Space for collapsed chat at bottom */
     }
 }
 
@@ -75,6 +75,8 @@
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
+    min-width: 0;
+    /* Prevent overflow */
 }
 
 .teamLogo img {
@@ -88,20 +90,24 @@
     font-weight: 600;
     text-align: center;
     color: #1a1a1a;
+    word-wrap: break-word;
+    max-width: 100%;
 }
 
 .matchCenter {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 2rem;
-    min-width: 150px;
+    padding: 0 1.5rem;
+    min-width: 120px;
+    flex-shrink: 0;
 }
 
 .matchDateTime {
     font-size: 0.75rem;
     color: #666;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .scoreContainer {
@@ -129,15 +135,85 @@
     margin-top: 0.25rem;
 }
 
+/* Mobile match header */
+@media (max-width: 768px) {
+    .matchHeader {
+        padding: 1rem;
+    }
+
+    .teamLogo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .teamName {
+        font-size: 0.85rem;
+    }
+
+    .matchCenter {
+        padding: 0 0.75rem;
+        min-width: 90px;
+    }
+
+    .score {
+        font-size: 1.75rem;
+    }
+
+    .scoreSeparator {
+        font-size: 1.5rem;
+    }
+
+    .matchDateTime {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .matchHeader {
+        padding: 0.75rem;
+    }
+
+    .teamLogo img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .teamName {
+        font-size: 0.75rem;
+    }
+
+    .matchCenter {
+        padding: 0 0.5rem;
+        min-width: 70px;
+    }
+
+    .score {
+        font-size: 1.5rem;
+    }
+
+    .scoreSeparator {
+        font-size: 1.2rem;
+    }
+}
+
+
 /* ========== MAIN TABS ========== */
 .tabsWrapper {
     background: white;
+    overflow: hidden;
 }
 
 .mainTabsBar {
     display: flex;
     border-bottom: 1px solid #e0e0e0;
     padding: 0 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.mainTabsBar::-webkit-scrollbar {
+    display: none;
 }
 
 .mainTabBtn {
@@ -150,6 +226,8 @@
     cursor: pointer;
     border-bottom: 3px solid transparent;
     transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .mainTabBtn:hover {
@@ -167,6 +245,13 @@
     gap: 0.5rem;
     background: #f9f9f9;
     border-bottom: 1px solid #e0e0e0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.subTabsBar::-webkit-scrollbar {
+    display: none;
 }
 
 .subTabBtn {
@@ -179,6 +264,8 @@
     color: #333;
     cursor: pointer;
     transition: all 0.2s;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .subTabBtn:hover {
@@ -193,6 +280,29 @@
 
 .tabContentArea {
     padding: 1rem;
+    overflow-x: auto;
+}
+
+/* Mobile improvements for tabs */
+@media (max-width: 768px) {
+    .mainTabBtn {
+        padding: 0.75rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .subTabsBar {
+        padding: 0.5rem 0.75rem;
+        gap: 0.4rem;
+    }
+
+    .subTabBtn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .tabContentArea {
+        padding: 0.75rem;
+    }
 }
 
 /* ========== EVENT TIMELINE ========== */
@@ -942,40 +1052,60 @@
 .positionCell {
     position: relative;
     padding-left: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.zoneChampions .positionCell::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
+.positionIndicator {
     width: 4px;
-    background: #28a745;
-}
-
-.zoneEuropa .positionCell::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #007bff;
-}
-
-.zoneRelegation .positionCell::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background: #dc3545;
+    height: 20px;
+    border-radius: 2px;
+    flex-shrink: 0;
 }
 
 .positionNumber {
     font-weight: 600;
+}
+
+/* Zone Indicators */
+.zoneChampions {
+    background-color: #2196f3;
+}
+
+.zoneEuropa {
+    background-color: #ff9800;
+}
+
+.zoneRelegation {
+    background-color: #f44336;
+}
+
+/* Standings Legend */
+.standingsLegend {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: #f9f9f9;
+    border-top: 1px solid #eee;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.legendItem {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: #666;
+}
+
+.legendColor {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    flex-shrink: 0;
 }
 
 .teamCell {
@@ -1028,9 +1158,9 @@
 
 /* ========== FUTURE MATCHES LIST ========== */
 .futureMatchesList {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .teamSection h4 {
@@ -1215,5 +1345,666 @@
 
     .futureMatchesList {
         grid-template-columns: 1fr;
+    }
+}
+
+/* ========== PLAYER STATS TAB ========== */
+.playerStatsContainer {
+    padding: 1rem;
+}
+
+.playerStatsTeamSelector {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.teamBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #333;
+}
+
+.teamBtn:hover {
+    border-color: #1e88e5;
+}
+
+.teamBtn.active {
+    background: #1e88e5;
+    border-color: #1e88e5;
+    color: #fff;
+}
+
+.teamBtnLogo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.playerStatsSummary {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+}
+
+.statSummaryCard {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+}
+
+.statSummaryCard.topPlayerCard {
+    background: linear-gradient(135deg, #fff8e1 0%, #fff3cd 100%);
+    border-color: #ffc107;
+    min-width: 120px;
+}
+
+.statSummaryValue {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e88e5;
+}
+
+.statSummaryLabel {
+    font-size: 0.7rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.trophyIcon {
+    color: #ffc107;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.playerStatsFilters {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.searchBox {
+    position: relative;
+    flex: 1;
+    max-width: 300px;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 0.85rem;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 0.6rem 0.75rem 0.6rem 2.25rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #1e88e5;
+}
+
+.playerStatsTableWrapper {
+    background: #fff;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid #e0e0e0;
+}
+
+.playerStatsTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.playerStatsTable th,
+.playerStatsTable td {
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.playerStatsTable th {
+    background: #fafafa;
+    color: #666;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.playerStatsTable tbody tr:hover {
+    background: #f8f9fa;
+}
+
+.stickyCol {
+    position: sticky;
+    left: 0;
+    background: inherit;
+    z-index: 2;
+    width: 45px;
+}
+
+.playerCol {
+    position: sticky;
+    left: 45px;
+    background: inherit;
+    z-index: 2;
+    min-width: 180px;
+    text-align: left !important;
+}
+
+.sortableCol {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.2s;
+}
+
+.sortableCol:hover {
+    color: #1e88e5;
+}
+
+.sortableCol.sorted {
+    color: #1e88e5;
+}
+
+.sortableCol svg {
+    font-size: 0.65rem;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+
+.topRow {
+    background: #fff8e1 !important;
+}
+
+.rank {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    font-size: 0.75rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.medalIcon {
+    font-size: 1rem;
+}
+
+.medal1 {
+    color: #ffc107;
+}
+
+.medal2 {
+    color: #9e9e9e;
+}
+
+.medal3 {
+    color: #cd7f32;
+}
+
+.playerCell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.playerImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e0e0e0;
+}
+
+.playerPlaceholder {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.playerInfo {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.playerName {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.85rem;
+}
+
+.playerPos {
+    color: #999;
+    font-size: 0.7rem;
+}
+
+.statBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 26px;
+    padding: 0 6px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.excellent {
+    background: rgba(76, 175, 80, 0.2);
+    color: #2e7d32;
+}
+
+.good {
+    background: rgba(30, 136, 229, 0.2);
+    color: #1565c0;
+}
+
+.average {
+    background: rgba(255, 193, 7, 0.2);
+    color: #f57c00;
+}
+
+.low {
+    background: rgba(158, 158, 158, 0.15);
+    color: #757575;
+}
+
+.neutral {
+    background: rgba(200, 200, 200, 0.2);
+    color: #999;
+}
+
+.poor {
+    background: rgba(244, 67, 54, 0.2);
+    color: #c62828;
+}
+
+.cardsCell {
+    display: flex;
+    gap: 4px;
+    justify-content: center;
+}
+
+.yellowCard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 22px;
+    background: #ffc107;
+    color: #333;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 2px;
+}
+
+.redCard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 22px;
+    background: #f44336;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: 700;
+    border-radius: 2px;
+}
+
+.minutesValue {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* Team Select Dropdown */
+.teamSelect {
+    padding: 0.5rem 1rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #333;
+    cursor: pointer;
+}
+
+.teamSelect:focus {
+    outline: none;
+    border-color: #1e88e5;
+}
+
+/* Position Filters */
+.positionFilters {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.positionBtn {
+    padding: 0.4rem 0.8rem;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.positionBtn:hover {
+    border-color: #1e88e5;
+    color: #1e88e5;
+}
+
+.positionBtn.active {
+    background: #1e88e5;
+    border-color: #1e88e5;
+    color: #fff;
+}
+
+/* Stat Category Tabs */
+.statCategoryTabs {
+    display: flex;
+    gap: 2px;
+    background: #dc3545;
+    border-radius: 6px 6px 0 0;
+    overflow-x: auto;
+    margin-bottom: 0;
+}
+
+.statCategoryTab {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    background: #dc3545;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.7rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.statCategoryTab:hover {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.statCategoryTab.active {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+/* Player Stats Header */
+.playerStatsHeader {
+    display: flex;
+    align-items: center;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    padding: 0.5rem 0;
+}
+
+.headerPlayerCol {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 200px;
+    padding: 0 0.75rem;
+    position: sticky;
+    left: 0;
+    background: #fafafa;
+    z-index: 5;
+}
+
+.headerSearchIcon {
+    color: #999;
+    font-size: 0.75rem;
+}
+
+.headerSearchInput {
+    width: 120px;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 0.75rem;
+}
+
+.headerSearchInput:focus {
+    outline: none;
+    border-color: #1e88e5;
+}
+
+.headerStatCol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 0.5rem 0.25rem;
+    color: #666;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.2s;
+    text-align: center;
+}
+
+.headerStatCol:hover {
+    color: #1e88e5;
+}
+
+.headerStatCol.sorted {
+    color: #1e88e5;
+}
+
+.headerStatCol svg {
+    font-size: 0.55rem;
+}
+
+/* Player Stats List */
+.playerStatsList {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+}
+
+.playerStatsRow {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background 0.15s;
+}
+
+.playerStatsRow:hover {
+    background: #f8f9fa;
+}
+
+.playerStatsRow.topRow {
+    background: #fff8e1;
+}
+
+.playerInfoCol {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 200px;
+    padding: 0.5rem 0.75rem;
+    position: sticky;
+    left: 0;
+    background: inherit;
+    z-index: 3;
+}
+
+.playerRowImg {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #e0e0e0;
+}
+
+.playerRowPlaceholder {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1e88e5, #1565c0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.7rem;
+}
+
+.playerRowMeta {
+    display: flex;
+    flex-direction: column;
+}
+
+.playerRowName {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.playerRowPos {
+    color: #999;
+    font-size: 0.65rem;
+}
+
+.playerStatCol {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 0.25rem;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+/* Rating Badge */
+.ratingBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 34px;
+    height: 24px;
+    padding: 0 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.75rem;
+}
+
+.ratingBadge.excellent {
+    background: #4caf50;
+    color: #fff;
+}
+
+.ratingBadge.good {
+    background: #8bc34a;
+    color: #fff;
+}
+
+.ratingBadge.average {
+    background: #ffc107;
+    color: #333;
+}
+
+.ratingBadge.low {
+    background: #ff9800;
+    color: #fff;
+}
+
+.ratingBadge.poor {
+    background: #f44336;
+    color: #fff;
+}
+
+.ratingBadge.neutral {
+    background: #e0e0e0;
+    color: #666;
+}
+
+/* Legend */
+.playerStatsLegend {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    margin-top: 1rem;
+    background: #fafafa;
+    border-radius: 6px;
+}
+
+.legendTitle {
+    color: #666;
+    font-size: 0.75rem;
+}
+
+.legendItems {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.legendItem {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 3px;
+}
+
+@media (max-width: 768px) {
+    .statCategoryTabs {
+        flex-wrap: nowrap;
+    }
+
+    .statCategoryTab {
+        min-width: 80px;
+        font-size: 0.65rem;
+        padding: 0.5rem;
+    }
+
+    .headerPlayerCol,
+    .playerInfoCol {
+        min-width: 150px;
+    }
+
+    .headerSearchInput {
+        width: 80px;
     }
 }

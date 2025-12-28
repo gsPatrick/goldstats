@@ -1,0 +1,247 @@
+/* EventTimeline.module.css - Premium UI/UX */
+
+.container {
+    width: 100%;
+    background: linear-gradient(135deg, #151518 0%, #121216 100%);
+    padding: 1.25rem;
+    border-radius: 14px;
+    box-sizing: border-box;
+}
+
+/* Filters */
+.filtersWrapper {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.02);
+    padding: 0.5rem;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.filterBtn {
+    background: rgba(255, 255, 255, 0.05);
+    color: #888;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 600;
+}
+
+.filterBtn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ccc;
+}
+
+.filterBtn.active {
+    background: linear-gradient(135deg, #e63946, #c62828);
+    color: #fff;
+    box-shadow: 0 3px 10px rgba(230, 57, 70, 0.35);
+}
+
+/* Match Status Header */
+.matchStatusHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.teamSide,
+.teamSideRight {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+}
+
+.teamSideRight {
+    justify-content: flex-end;
+}
+
+.logo {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.teamName {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.scoreCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+}
+
+.statusLabel {
+    font-size: 0.7rem;
+    color: #888;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.finalScore {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+/* Timeline */
+.timelineList {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.eventRow {
+    display: flex;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: background 0.2s ease;
+}
+
+.eventRow:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.eventRow:last-child {
+    border-bottom: none;
+}
+
+.side {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.homeSide {
+    justify-content: flex-start;
+    color: #fff;
+    padding-right: 8px;
+}
+
+.awaySide {
+    justify-content: flex-end;
+    color: #fff;
+    text-align: right;
+    padding-left: 8px;
+}
+
+.minute {
+    color: #e63946;
+    font-weight: 700;
+    min-width: 35px;
+    font-size: 0.8rem;
+}
+
+.homeSide .minute {
+    text-align: left;
+}
+
+.awaySide .minute {
+    text-align: right;
+}
+
+.player {
+    font-weight: 500;
+    color: #e0e0e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 140px;
+}
+
+.neutralSide {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+}
+
+.iconHome {
+    filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.4));
+}
+
+.iconAway {
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.4));
+}
+
+.emptyState {
+    text-align: center;
+    padding: 3rem;
+    color: #555;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .filterBtn {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.7rem;
+    }
+
+    .logo {
+        width: 28px;
+        height: 28px;
+    }
+
+    .teamName {
+        font-size: 0.8rem;
+        max-width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .finalScore {
+        font-size: 1.5rem;
+    }
+
+    .player {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .teamName {
+        display: none;
+    }
+
+    .logo {
+        width: 24px;
+        height: 24px;
+    }
+}

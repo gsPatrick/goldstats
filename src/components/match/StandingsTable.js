@@ -28,7 +28,7 @@ export default function StandingsTable({ standings, topPlayers, homeTeamId, away
             if (status.includes('Relegation')) return styles.zoneRelegation;
         }
         if (position <= 4) return styles.zoneChampions;
-        if (position <= 6) return styles.zoneEuropa;
+        if (position === 5 || position === 6) return styles.zoneEuropa;
         if (position > total - 3) return styles.zoneRelegation;
         return '';
     };
@@ -161,10 +161,13 @@ export default function StandingsTable({ standings, topPlayers, homeTeamId, away
                                 return (
                                     <tr
                                         key={team.team_id || idx}
-                                        className={`${isHighlighted ? styles.highlightedRow : ''} ${zoneClass}`}
+                                        className={`${isHighlighted ? styles.highlightedRow : ''}`}
                                     >
                                         <td className={styles.positionCell}>
-                                            <span className={styles.positionNumber}>{position}.</span>
+                                            <span
+                                                className={`${styles.positionIndicator} ${zoneClass}`}
+                                            ></span>
+                                            <span className={styles.positionNumber}>{position}</span>
                                         </td>
                                         <td className={styles.teamCell}>
                                             <img src={team.team_logo} alt="" className={styles.teamLogoSmall} />
@@ -191,6 +194,21 @@ export default function StandingsTable({ standings, topPlayers, homeTeamId, away
                             })}
                         </tbody>
                     </table>
+
+                    <div className={styles.standingsLegend}>
+                        <div className={styles.legendItem}>
+                            <span className={`${styles.legendColor} ${styles.zoneChampions}`}></span>
+                            <span>Champions League</span>
+                        </div>
+                        <div className={styles.legendItem}>
+                            <span className={`${styles.legendColor} ${styles.zoneEuropa}`}></span>
+                            <span>Europa League</span>
+                        </div>
+                        <div className={styles.legendItem}>
+                            <span className={`${styles.legendColor} ${styles.zoneRelegation}`}></span>
+                            <span>Rebaixamento</span>
+                        </div>
+                    </div>
                 </div>
             )}
 

@@ -7,11 +7,12 @@ import StatsComparison from './StatsComparison';
 import Formations from './Formations';
 import H2HSection from './H2HSection';
 import StandingsTable from './StandingsTable';
+import PlayerStatsTab from './PlayerStatsTab';
 
 export default function MainTabs({ matchData }) {
     const [mainTab, setMainTab] = useState('jogo');
-    const [subTab, setSubTab] = useState('sumario');
-    const [hideCups, setHideCups] = useState(true);
+    const [subTab, setSubTab] = useState('sumario'); // Default to Sumário (Flashscore style)
+    const [hideCups, setHideCups] = useState(false);
 
     // Determine match status
     const isFinished = ['FT', 'AET', 'PEN'].includes(matchData.header?.status);
@@ -20,15 +21,16 @@ export default function MainTabs({ matchData }) {
 
     const mainTabs = [
         { id: 'jogo', label: 'JOGO' },
-        { id: 'h2h', label: 'H2H' },
-        { id: 'classificacoes', label: 'CLASSIFICAÇÕES' }
+        { id: 'h2h', label: 'H2H' }
     ];
 
-    // Sub-tabs - always show these 6 tabs, first 3 for match (may be empty for future), last 3 for pre-match analysis
+    // Sub-tabs - FLASHSCORE STYLE ORDER (SUMÁRIO RESTORED)
     const subTabs = [
         { id: 'sumario', label: 'SUMÁRIO' },
         { id: 'estatisticas', label: 'ESTATÍSTICAS' },
         { id: 'formacoes', label: 'FORMAÇÕES' },
+        { id: 'dadosjogadores', label: 'DADOS JOGADORES' },
+        { id: 'classificacoes', label: 'CLASSIFICAÇÃO' },
         { id: 'proximosjogos', label: 'PRÓXIMOS JOGOS' },
         { id: 'ultimosjogos', label: 'FORMA RECENTE' },
         { id: 'analise', label: 'ANÁLISE IA' }
@@ -158,6 +160,14 @@ export default function MainTabs({ matchData }) {
                             />
                         )}
                     </>
+                )}
+
+                {/* === DADOS JOGADORES === */}
+                {mainTab === 'jogo' && subTab === 'dadosjogadores' && (
+                    <PlayerStatsTab
+                        homeTeam={matchData.homeTeam}
+                        awayTeam={matchData.awayTeam}
+                    />
                 )}
 
                 {/* === PRÓXIMOS JOGOS === */}
@@ -312,7 +322,7 @@ export default function MainTabs({ matchData }) {
                 )}
 
                 {/* CLASSIFICAÇÕES Tab */}
-                {mainTab === 'classificacoes' && (
+                {mainTab === 'jogo' && subTab === 'classificacoes' && (
                     <StandingsTable
                         standings={matchData.standings}
                         topPlayers={matchData.topPlayers}

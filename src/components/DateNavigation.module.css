@@ -1,0 +1,69 @@
+.dateNavigation {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #1a1a2e;
+    border-bottom: 1px solid #2a2a4e;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.dateBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    border: 1px solid #3a3a5e;
+    border-radius: 8px;
+    background: #2a2a4e;
+    color: #999;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 70px;
+}
+
+.dateBtn:hover {
+    background: #3a3a6e;
+    border-color: #e63946;
+    color: #fff;
+}
+
+.dateBtn.active {
+    background: #e63946;
+    border-color: #e63946;
+    color: #fff;
+}
+
+.dayName {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.dayNum {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0.25rem 0;
+}
+
+.label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .dateNavigation {
+        padding: 0.75rem;
+        gap: 0.35rem;
+    }
+
+    .dateBtn {
+        padding: 0.5rem 0.75rem;
+        min-width: 55px;
+    }
+
+    .dayNum {
+        font-size: 1rem;
+    }
+}
