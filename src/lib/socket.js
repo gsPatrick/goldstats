@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const API_URL = 'http://127.0.0.1:3333';
+const API_URL = 'https://10stats-api-10stats.ebl0ff.easypanel.host';
 let socket;
 
 export const initSocket = () => {

@@ -1,9 +1,8 @@
 import styles from '../../../components/match/match.module.css';
 import MatchPageClient from './MatchPageClient';
 
-// USE LOCAL FOR TESTING, PRODUCTION WHEN DEPLOYING
-const API_BASE = 'http://127.0.0.1:3333/api';
-// const API_BASE = 'https://10stats-api-10stats.ebl0ff.easypanel.host/api';
+// PRODUCTION URL
+const API_BASE = 'https://10stats-api-10stats.ebl0ff.easypanel.host/api';
 
 async function getMatchData(id) {
     const opts = { cache: 'no-store' };

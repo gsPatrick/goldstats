@@ -8,7 +8,7 @@ import ChatSidebar from '../../../components/chat/ChatSidebar';
 import { initSocket, subscribeToMatch, unsubscribeFromMatch } from '../../../lib/socket';
 
 // API base for client-side fetching
-const API_BASE = 'http://127.0.0.1:3333/api';
+const API_BASE = 'https://10stats-api-10stats.ebl0ff.easypanel.host/api';
 
 // Match statuses that indicate a live game
 const LIVE_STATUSES = ['LIVE', 'HT', '1H', '2H', 'ET', 'PEN_LIVE', 'BREAK'];

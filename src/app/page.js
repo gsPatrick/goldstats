@@ -5,8 +5,8 @@ import styles from '../styles/home.module.css';
 import Link from 'next/link';
 import DateNavigation from '../components/DateNavigation';
 
-// LOCAL TESTING - change back to production URL when deploying
-const API_BASE = 'http://127.0.0.1:3333/api';
+// PRODUCTION URL
+const API_BASE = 'https://10stats-api-10stats.ebl0ff.easypanel.host/api';
 
 // Live match statuses
 const LIVE_STATUSES = ['LIVE', 'HT', '1H', '2H', 'ET', 'PEN_LIVE', 'BREAK'];
